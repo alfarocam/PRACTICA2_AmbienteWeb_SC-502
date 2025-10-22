@@ -1,3 +1,9 @@
+<?php
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/PRACTICA2/Controller/RegVendedorController.php';
+  require_once '../LayoutInterno.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -9,10 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HVAC | Template</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
@@ -25,41 +29,12 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="../img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
+    <?php ShowHeader(); ?>
 
-                                <li class="active"><a href="#">Menú</a>
-                                    <ul class="dropdown">
-                                        <li><a href="../RegVendedor.php">Registro Vendedores</a></li>
-                                        <li><a href="./RegVehiculos.php">Registro Vehículos</a></li>
-                                        <li><a href="./Consulta.php">Consulta Vehículos</a></li>
-                        </nav>
-                        <div class="canvas__open">
-                            <span class="fa fa-bars"></span>
-                        </div>
-                    </div>
-    </header>
-    <!-- Header Section End -->
-
-
-    <!-- Contact Section Begin -->
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -80,27 +55,25 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Cédula del vendedor">
+                                    <input type="text" placeholder="Cédula del vendedor" id="Cedula" name="Cedula">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Nombre del vendedor">
+                                    <input type="text" placeholder="Nombre del vendedor" id="Nombre" name="Nombre">
                                 </div>
                             </div>
-                            <input type="text" placeholder="Correo Eletrónico">
+                            <input type="text" placeholder="Correo Eletrónico" id="CorreoElectronico" name="CorreoElectronico">
 
-                            <button type="submit" class="site-btn">Guardar</button>
+                            <button type="submit" class="site-btn" id="btnGuardarVendedor" name="btnGuardarVendedor">Guardar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Contact Section End -->
 
-    <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="../img/footer-bg.jpg">
         <div class="container">
             <div class="footer__contact">
@@ -128,10 +101,7 @@
 
         </div>
     </footer>
-    <!-- Footer Section End -->
 
-
-    <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>

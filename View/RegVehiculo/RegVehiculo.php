@@ -1,3 +1,8 @@
+<?php
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/PRACTICA2/Controller/RegVehiculoController.php';
+  require_once '../LayoutInterno.php';
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -9,10 +14,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HVAC | Template</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
@@ -25,49 +28,19 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="../img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
+    <?php ShowHeader(); ?>
 
-                                <li class="active"><a href="#">Menú</a>
-                                    <ul class="dropdown">
-                                        <li><a href="../RegVendedor.php">Registro Vendedores</a></li>
-                                        <li><a href="./RegVehiculos.php">Registro Vehículos</a></li>
-                                        <li><a href="./Consulta.php">Consulta Vehículos</a></li>
-                        </nav>
-                        <div class="canvas__open">
-                            <span class="fa fa-bars"></span>
-                        </div>
-                    </div>
-    </header>
-    <!-- Header Section End -->
-
-
-    <!-- Registro de Vehículos Section Begin -->
     <section class="contact spad">
         <div class="container">
             <div class="row">
-                <!-- Columna izquierda: descripción -->
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__text">
-                       <div class="section-title">
-                            <h2>Registro de Vendedores</h2>
+                        <div class="section-title">
+                            <h2>Registro de Vehículos</h2>
                             <p class="fs-5 text-muted">
                                 En esta sección puede registrar nuevos vehículos en la base de datos del sistema.
                             </p>
@@ -84,44 +57,48 @@
                     </div>
                 </div>
 
-                <!-- Columna derecha: formulario -->
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Marca" required>
+                                    <input type="text" placeholder="Marca" required id="Marca" name="Marca">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Modelo" required>
+                                    <input type="text" placeholder="Modelo" required id="Modelo" name="Modelo">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Color" required>
+                                    <input type="text" placeholder="Color" required id="Color" name="Color">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="number" step="0.01" placeholder="Precio" required>
+                                    <input type="number" step="0.01" placeholder="Precio" required id="Precio"
+                                        name="Precio">
                                 </div>
                             </div>
-                            <select class="form-select mb-3" required>
+                            <select class="form-select mb-3" required name="Vendedor" id="Vendedor">
                                 <option value="">Seleccione el vendedor</option>
-                                <option value="1">Vendedor 1</option>
-                                <option value="2">Vendedor 2</option>
-                                <option value="3">Vendedor 3</option>
+                                <?php
+                                    if($vendedores != null && mysqli_num_rows($vendedores) > 0)
+                                    {
+                                        while($fila = mysqli_fetch_array($vendedores))
+                                        {
+                                            echo '<option value="' . $fila["IdVendedor"] . '">' . $fila["Nombre"] . ' - ' . $fila["Cedula"] . '</option>';
+                                        }
+                                    }
+                                    ?>
                             </select>
 
-                            <button type="submit" class="site-btn"> Guardar </button>
+                            <button type="submit" class="site-btn" id="btnGuardarVehiculo" name="btnGuardarVehiculo">
+                                Guardar </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Registro de Vehículos Section End -->
-
-
-    <!-- Footer Section Begin -->
+ 
     <footer class="footer set-bg" data-setbg="../img/footer-bg.jpg">
         <div class="container">
             <div class="footer__contact">
@@ -150,10 +127,7 @@
 
         </div>
     </footer>
-    <!-- Footer Section End -->
 
-
-    <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>

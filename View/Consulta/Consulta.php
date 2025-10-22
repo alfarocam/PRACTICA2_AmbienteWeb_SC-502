@@ -1,3 +1,8 @@
+<?php
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/PRACTICA2/Controller/ConsultaController.php';
+  require_once '../LayoutInterno.php';
+?>
+
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -30,33 +35,7 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="../img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
-
-                                <li class="active"><a href="#">Menú</a>
-                                    <ul class="dropdown">
-                                        <li><a href="../RegVendedor.php">Registro Vendedores</a></li>
-                                        <li><a href="./RegVehiculos.php">Registro Vehículos</a></li>
-                                        <li><a href="./Consulta.php">Consulta Vehículos</a></li>
-                        </nav>
-                        <div class="canvas__open">
-                            <span class="fa fa-bars"></span>
-                        </div>
-                    </div>
-    </header>
-    <!-- Header Section End -->
+    <?php ShowHeader(); ?>
 
 
     <!-- Consulta de Vehículos Section Begin -->
@@ -91,26 +70,26 @@
                 <!-- Columna derecha: formulario -->
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="" method="POST">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Cédula del vendedor">
+                                    <input type="text" placeholder="Cédula del vendedor" id="Cedula" name="Cedula">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Nombre del vendedor">
+                                    <input type="text" placeholder="Nombre del vendedor" id="Nombre" name="Nombre">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Marca">
+                                    <input type="text" placeholder="Marca" id="Marca" name="Marca">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Modelo">
+                                    <input type="text" placeholder="Modelo" id="Modelo" name="Modelo">
                                 </div>
                             </div>
-                            <input type="number" step="0.01" placeholder="Precio">
+                            <input type="number" step="0.01" placeholder="Precio" id="Precio" name="Precio">
 
-                            <button type="submit" class="site-btn">Buscar</button>
+                            <button type="submit" class="site-btn" id="btnConsultar" name="btnConsultar">Buscar</button>
                         </form>
                     </div>
                 </div>
@@ -118,7 +97,42 @@
         </div>
     </section>
     <!-- Consulta de Vehículos Section End -->
-
+     
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Resultados de la Consulta</h3>
+            <?php
+        if(isset($_POST["Mensaje"]))
+        {
+            echo '<div class="alert alert-warning">' . $_POST["Mensaje"] . '</div>';
+        }
+        
+        if($datosVehiculos != null && mysqli_num_rows($datosVehiculos) > 0)
+        {
+            echo '<table class="table table-striped">';
+            echo '<thead><tr><th>Cédula</th><th>Nombre</th><th>Marca</th><th>Modelo</th><th>Precio</th></tr></thead>';
+            echo '<tbody>';
+            
+            while($fila = mysqli_fetch_array($datosVehiculos))
+            {
+                echo '<tr>';
+                echo '<td>' . $fila["Cedula"] . '</td>';
+                echo '<td>' . $fila["Nombre"] . '</td>';
+                echo '<td>' . $fila["Marca"] . '</td>';
+                echo '<td>' . $fila["Modelo"] . '</td>';
+                echo '<td>₡' . number_format($fila["Precio"], 2) . '</td>';
+                echo '</tr>';
+            }
+            
+            echo '</tbody></table>';
+        }
+        else
+        {
+            echo '<p>No hay vehículos para mostrar.</p>';
+        }
+        ?>
+        </div>
+    </div>
 
 
     <!-- Footer Section Begin -->

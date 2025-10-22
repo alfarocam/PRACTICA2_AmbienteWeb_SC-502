@@ -1,3 +1,6 @@
+<?php
+require_once '../LayoutInterno.php';
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -9,10 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Práctica 2</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
@@ -25,40 +26,12 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="../img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
+    <?php ShowHeader(); ?>
 
-                                <li><a href="#">Menú</a>
-                                    <ul class="dropdown">
-                                        <li><a href="../RegVendedor.php">Registro Vendedores</a></li>
-                                        <li><a href="./RegVehiculos.php">Registro Vehículos</a></li>
-                                        <li><a href="./Consulta.php">Consulta Vehículos</a></li>
-                        </nav>
-                        <div class="canvas__open">
-                            <span class="fa fa-bars"></span>
-                        </div>
-                    </div>
-    </header>
-    <!-- Header Section End -->
-
-    <!-- Hero Section Begin -->
     <section class="hero spad set-bg" data-setbg="../img/hero-bg.jpg">
         <div class="container">
             <div class="row">
@@ -70,14 +43,12 @@
                         </div>
                         <div class="hero__text__price">
                             <div class="car-model">Vaya a MENÚ para acceder a las opciones principales del sistema</div>
-                            
+
                         </div>
                     </div>
                 </div>
     </section>
-    <!-- Hero Section End -->
 
-    <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="../img/footer-bg.jpg">
         <div class="container">
             <div class="footer__contact">
@@ -90,12 +61,13 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__contact__option">
                             <div class="option__item"><i class=""></i>Camila Alfaro</div>
-                            <div class="option__item email"><i class="fa fa-envelope-o"></i> calfaro80839@ufide.ac.cr</div>
+                            <div class="option__item email"><i class="fa fa-envelope-o"></i> calfaro80839@ufide.ac.cr
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer__copyright__text">
                 <p>Copyright &copy;<script>
                     document.write(new Date().getFullYear());
@@ -105,10 +77,7 @@
 
         </div>
     </footer>
-    <!-- Footer Section End -->
 
-
-    <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>
